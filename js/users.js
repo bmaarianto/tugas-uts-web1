@@ -13,8 +13,9 @@ function checkAdminAccess() {
   const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
 
   if (!currentUser) {
-    alert("Silakan login terlebih dahulu!");
-    window.location.href = "login.html";
+    showAlert("Silakan login terlebih dahulu!").then(() => {
+      window.location.href = "login.html";
+    });
     return;
   }
 
@@ -41,10 +42,10 @@ function loadUsers() {
                     <td>${user.nama}</td>
                     <td>${user.email}</td>
                     <td><span class="badge ${roleClass}">${user.role}</span></td>
-                    <td>
-                        <button class="btn-action btn-edit" onclick="editUser(${index})">✏️ Edit</button>
-                        <button class="btn-action btn-delete" onclick="deleteUser(${index})">🗑️ Hapus</button>
-                    </td>
+          <td>
+            <button class="btn-action btn-edit" onclick="editUser(${index})"><i class="fas fa-edit"></i> Edit</button>
+            <button class="btn-action btn-delete" onclick="deleteUser(${index})"><i class="fas fa-trash"></i> Hapus</button>
+          </td>
                 `;
   });
 }
@@ -92,18 +93,18 @@ function handleSubmit(e) {
   });
 
   if (emailExists) {
-    alert("Email sudah digunakan oleh pengguna lain!");
+    showAlert("Email sudah digunakan oleh pengguna lain!");
     return;
   }
 
   if (currentEditIndex === -1) {
     // Tambah pengguna baru
     dataPengguna.push(userData);
-    alert("Pengguna berhasil ditambahkan!");
+    showAlert("Pengguna berhasil ditambahkan!");
   } else {
     // Update pengguna yang ada
     dataPengguna[currentEditIndex] = userData;
-    alert("Data pengguna berhasil diupdate!");
+    showAlert("Data pengguna berhasil diupdate!");
   }
 
   loadUsers();
@@ -130,11 +131,13 @@ function deleteUser(index) {
   // Cegah menghapus akun sendiri
   const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
   if (user.email === currentUser.email) {
-    alert("Anda tidak dapat menghapus akun Anda sendiri!");
+    showAlert("Anda tidak dapat menghapus akun Anda sendiri!");
     return;
   }
-
-  if (confirm(`Apakah Anda yakin ingin menghapus pengguna "${user.nama}"?`)) {
+  showConfirm(
+    `Apakah Anda yakin ingin menghapus pengguna "${user.nama}"?`
+  ).then((confirmed) => {
+    if (!confirmed) return;
     dataPengguna.splice(index, 1);
 
     // Update ID
@@ -144,8 +147,8 @@ function deleteUser(index) {
 
     loadUsers();
     updateStats();
-    alert("Pengguna berhasil dihapus!");
-  }
+    showAlert("Pengguna berhasil dihapus!");
+  });
 }
 
 window.onclick = function (event) {

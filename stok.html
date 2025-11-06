@@ -3,13 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Katalog Buku - Toko Buku Online UT</title>
+    <title>Katalog Buku - Toko Buku Singkong</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
     <link rel="stylesheet" href="css/stok.css" />
   </head>
   <body>
     <nav class="navbar">
       <div class="navbar-brand" onclick="location.href='dashboard.html'">
-        📚 Toko Buku UT
+        <i class="fas fa-book"></i> Toko Buku Singkong
       </div>
       <a href="dashboard.html" class="btn-back">← Kembali ke Dashboard</a>
     </nav>
@@ -17,7 +21,9 @@
     <div class="container">
       <div class="header">
         <h1>Katalog Buku</h1>
-        <button class="btn-add" onclick="openModal()">➕ Tambah Buku</button>
+        <button class="btn-add" onclick="openModal()">
+          <i class="fas fa-plus"></i> Tambah Buku
+        </button>
       </div>
 
       <div class="table-container">
@@ -84,6 +90,7 @@
       </div>
     </div>
 
+    <script src="js/modal.js"></script>
     <script src="js/data.js"></script>
     <script src="js/stok.js"></script>
   </body>

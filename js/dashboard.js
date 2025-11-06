@@ -2,8 +2,9 @@ window.onload = function () {
   const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
 
   if (!currentUser) {
-    alert("Silakan login terlebih dahulu!");
-    window.location.href = "login.html";
+    showAlert("Silakan login terlebih dahulu!").then(() => {
+      window.location.href = "login.html";
+    });
     return;
   }
 
@@ -75,10 +76,11 @@ function updateTime() {
 }
 
 function logout() {
-  if (confirm("Apakah Anda yakin ingin logout?")) {
+  showConfirm("Apakah Anda yakin ingin logout?").then((confirmed) => {
+    if (!confirmed) return;
     sessionStorage.removeItem("currentUser");
     window.location.href = "index.html";
-  }
+  });
 }
 
 setInterval(updateTime, 60000);

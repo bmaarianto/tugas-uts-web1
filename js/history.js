@@ -13,8 +13,9 @@ function checkUser() {
   currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
 
   if (!currentUser) {
-    alert("Silakan login terlebih dahulu!");
-    window.location.href = "login.html";
+    showAlert("Silakan login terlebih dahulu!").then(() => {
+      window.location.href = "login.html";
+    });
     return;
   }
 
@@ -149,7 +150,7 @@ function renderTransactions() {
                     <tr>
                         <td colspan="7">
                             <div class="empty-state">
-                                <div class="empty-state-icon">📭</div>
+                                <div class="empty-state-icon"><i class="fas fa-inbox-out"></i></div>
                                 <h3>Tidak ada transaksi</h3>
                                 <p>Belum ada data transaksi yang sesuai dengan filter</p>
                             </div>
@@ -192,7 +193,7 @@ function renderTransactions() {
                     <td><span class="badge ${
                       statusClass[transaction.status]
                     }">${statusText[transaction.status]}</span></td>
-                    <td><button class="btn-detail" onclick="showDetail(${index})">📄 Detail</button></td>
+                    <td><button class="btn-detail" onclick="showDetail(${index})"><i class="fas fa-file-alt"></i> Detail</button></td>
                 `;
   });
 }

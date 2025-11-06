@@ -4,11 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard - Toko Buku Singkong</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
     <link rel="stylesheet" href="css/dashboard.css" />
   </head>
   <body>
     <nav class="navbar">
-      <div class="navbar-brand">📚 Toko Buku Singkong</div>
+      <div class="navbar-brand">
+        <i class="fas fa-book"></i> Toko Buku Singkong
+      </div>
       <div class="user-info">
         <span class="role-badge" id="roleBadge">User</span>
         <span id="userName">User</span>
@@ -24,37 +30,38 @@
 
       <div class="menu-grid">
         <a href="stok.html" class="menu-card card-katalog">
-          <div class="menu-icon">📚</div>
+          <div class="menu-icon"><i class="fas fa-book-open"></i></div>
           <h3>Katalog Buku</h3>
           <p id="katalogDesc">Lihat dan kelola stok buku yang tersedia</p>
         </a>
 
         <a href="tracking.html" class="menu-card card-tracking">
-          <div class="menu-icon">📦</div>
+          <div class="menu-icon"><i class="fas fa-truck"></i></div>
           <h3>Tracking Pengiriman</h3>
           <p>Lacak status pengiriman pesanan Anda</p>
         </a>
 
         <a href="checkout.html" class="menu-card card-laporan user-only">
-          <div class="menu-icon">🛒</div>
+          <div class="menu-icon"><i class="fas fa-shopping-cart"></i></div>
           <h3>Pemesanan</h3>
           <p>Buat pesanan buku baru</p>
         </a>
 
         <a href="history.html" class="menu-card card-history">
-          <div class="menu-icon">📊</div>
+          <div class="menu-icon"><i class="fas fa-chart-bar"></i></div>
           <h3>History Transaksi</h3>
           <p>Lihat riwayat transaksi</p>
         </a>
 
         <a href="users.html" class="menu-card card-users admin-only">
-          <div class="menu-icon">👥</div>
+          <div class="menu-icon"><i class="fas fa-users"></i></div>
           <h3>Kelola Pengguna</h3>
           <p>Manajemen data pengguna sistem</p>
         </a>
       </div>
     </div>
 
+    <script src="js/modal.js"></script>
     <script src="js/data.js"></script>
     <script src="js/dashboard.js"></script>
   </body>

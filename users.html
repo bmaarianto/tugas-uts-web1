@@ -4,18 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kelola Pengguna - Toko Buku Singkong</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
     <link rel="stylesheet" href="css/users.css" />
   </head>
   <body>
     <nav class="navbar">
       <div class="navbar-brand" onclick="location.href='dashboard.html'">
-        📚 Toko Buku Singkong
+        <i class="fas fa-book"></i> Toko Buku Singkong
       </div>
       <a href="dashboard.html" class="btn-back">← Kembali ke Dashboard</a>
     </nav>
 
     <div id="accessDenied" class="access-denied" style="display: none">
-      <div class="access-denied-icon">🚫</div>
+      <div class="access-denied-icon"><i class="fas fa-ban"></i></div>
       <h1>Akses Ditolak</h1>
       <p>Anda tidak memiliki izin untuk mengakses halaman ini.</p>
       <p>Hanya Admin yang dapat mengakses halaman Kelola Pengguna.</p>
@@ -27,9 +31,9 @@
 
     <div class="container" id="mainContent">
       <div class="header">
-        <h1>👥 Kelola Pengguna</h1>
+        <h1><i class="fas fa-users"></i> Kelola Pengguna</h1>
         <button class="btn-add" onclick="openModal()">
-          ➕ Tambah Pengguna
+          <i class="fas fa-plus"></i> Tambah Pengguna
         </button>
       </div>
 
@@ -98,6 +102,7 @@
       </div>
     </div>
 
+    <script src="js/modal.js"></script>
     <script src="js/data.js"></script>
     <script src="js/users.js"></script>
   </body>

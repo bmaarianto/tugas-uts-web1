@@ -4,19 +4,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>History Transaksi - Toko Buku Singong</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
     <link rel="stylesheet" href="css/history.css" />
   </head>
   <body>
     <nav class="navbar">
       <div class="navbar-brand" onclick="location.href='dashboard.html'">
-        📚 Toko Buku Singkong
+        <i class="fas fa-book"></i> Toko Buku Singkong
       </div>
       <a href="dashboard.html" class="btn-back">← Kembali ke Dashboard</a>
     </nav>
 
     <div class="container">
       <div class="header">
-        <h1>📊 History Transaksi</h1>
+        <h1><i class="fas fa-chart-bar"></i> History Transaksi</h1>
         <div class="filter-section">
           <select id="filterStatus" onchange="filterTransactions()">
             <option value="all">Semua Status</option>
@@ -30,19 +34,19 @@
 
       <div class="stats-grid">
         <div class="stat-card card-blue">
-          <div class="stat-icon">📦</div>
+          <div class="stat-icon"><i class="fas fa-box"></i></div>
           <div class="stat-label">Total Transaksi</div>
           <div class="stat-value" id="totalTransaksi">0</div>
         </div>
 
         <div class="stat-card card-green">
-          <div class="stat-icon">💰</div>
+          <div class="stat-icon"><i class="fas fa-money-bill-wave"></i></div>
           <div class="stat-label">Total Pendapatan</div>
           <div class="stat-value" id="totalPendapatan">Rp 0</div>
         </div>
 
         <div class="stat-card card-orange">
-          <div class="stat-icon">📚</div>
+          <div class="stat-icon"><i class="fas fa-book-open"></i></div>
           <div class="stat-label">Total Buku Terjual</div>
           <div class="stat-value" id="totalBuku">0</div>
         </div>
@@ -73,7 +77,7 @@
       <div class="modal-content">
         <span class="close" onclick="closeModal()">&times;</span>
         <div class="detail-header">
-          <h2>📋 Detail Transaksi</h2>
+          <h2><i class="fas fa-clipboard-list"></i> Detail Transaksi</h2>
         </div>
         <div id="detailContent">
           <!-- Detail akan diisi oleh JavaScript -->
@@ -81,6 +85,7 @@
       </div>
     </div>
 
+    <script src="js/modal.js"></script>
     <script src="js/data.js"></script>
     <script src="js/history.js"></script>
   </body>

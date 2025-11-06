@@ -34,7 +34,7 @@ function addItem() {
   const selectedIndex = selectEl.value;
 
   if (!selectedIndex) {
-    alert("Silakan pilih buku terlebih dahulu!");
+    showAlert("Silakan pilih buku terlebih dahulu!");
     return;
   }
 
@@ -128,7 +128,7 @@ function updateSummary() {
 function processCheckout() {
   // Validasi
   if (orderItems.length === 0) {
-    alert("Silakan tambahkan buku ke pesanan!");
+    showAlert("Silakan tambahkan buku ke pesanan!");
     return;
   }
 
@@ -147,7 +147,7 @@ function processCheckout() {
     !metodePembayaran ||
     !ekspedisi
   ) {
-    alert("Mohon lengkapi semua data pesanan!");
+    showAlert("Mohon lengkapi semua data pesanan!");
     return;
   }
 
@@ -157,23 +157,22 @@ function processCheckout() {
     orderItems.reduce((sum, item) => sum + item.harga * item.qty, 0) +
     shippingCost;
 
-  // Simulasi proses pesanan
-  alert(
-    `✅ Pesanan Berhasil!\n\nNomor Pesanan: ${nomorPesanan}\nTotal Bayar: Rp ${total.toLocaleString(
-      "id-ID"
-    )}\n\nTerima kasih telah berbelanja di Toko Buku UT!`
-  );
+  // Simulasi proses pesanan — tampilkan modal lalu reset
+  const message = `Pesanan Berhasil!\n\nNomor Pesanan: ${nomorPesanan}\nTotal Bayar: Rp ${total.toLocaleString(
+    "id-ID"
+  )}\n\nTerima kasih telah berbelanja di Toko Buku Singkong!`;
+  showAlert(message).then(() => {
+    // Reset form
+    orderItems = [];
+    renderOrderTable();
+    updateSummary();
+    document.getElementById("namaPemesan").value = "";
+    document.getElementById("emailPemesan").value = "";
+    document.getElementById("telepon").value = "";
+    document.getElementById("alamat").value = "";
+    document.getElementById("metodePembayaran").value = "";
+    document.getElementById("ekspedisi").value = "";
 
-  // Reset form
-  orderItems = [];
-  renderOrderTable();
-  updateSummary();
-  document.getElementById("namaPemesan").value = "";
-  document.getElementById("emailPemesan").value = "";
-  document.getElementById("telepon").value = "";
-  document.getElementById("alamat").value = "";
-  document.getElementById("metodePembayaran").value = "";
-  document.getElementById("ekspedisi").value = "";
-
-  loadUserData(); // Reload user data
+    loadUserData(); // Reload user data
+  });
 }

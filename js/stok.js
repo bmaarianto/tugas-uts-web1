@@ -3,8 +3,9 @@ let currentEditIndex = -1;
 function checkUserAccess() {
   const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
   if (!currentUser) {
-    alert("Silakan login terlebih dahulu!");
-    window.location.href = "login.html";
+    showAlert("Silakan login terlebih dahulu!").then(() => {
+      window.location.href = "login.html";
+    });
     return false;
   }
   return currentUser;
@@ -50,8 +51,8 @@ function loadBooks() {
                     ${
                       isAdmin
                         ? `<td>
-                        <button class="btn-action btn-edit" onclick="editBook(${index})">✏️ Edit</button>
-                        <button class="btn-action btn-delete" onclick="deleteBook(${index})">🗑️ Hapus</button>
+                        <button class="btn-action btn-edit" onclick="editBook(${index})"><i class="fas fa-edit"></i> Edit</button>
+                        <button class="btn-action btn-delete" onclick="deleteBook(${index})"><i class="fas fa-trash"></i> Hapus</button>
                     </td>`
                         : ""
                     }
@@ -90,11 +91,11 @@ function handleSubmit(e) {
   if (currentEditIndex === -1) {
     // Tambah buku baru
     dataKatalogBuku.push(bookData);
-    alert("Buku berhasil ditambahkan!");
+    showAlert("Buku berhasil ditambahkan!");
   } else {
     // Update buku yang ada
     dataKatalogBuku[currentEditIndex] = bookData;
-    alert("Buku berhasil diupdate!");
+    showAlert("Buku berhasil diupdate!");
   }
 
   loadBooks();
@@ -118,11 +119,14 @@ function editBook(index) {
 }
 
 function deleteBook(index) {
-  if (confirm("Apakah Anda yakin ingin menghapus buku ini?")) {
-    dataKatalogBuku.splice(index, 1);
-    loadBooks();
-    alert("Buku berhasil dihapus!");
-  }
+  showConfirm("Apakah Anda yakin ingin menghapus buku ini?").then(
+    (confirmed) => {
+      if (!confirmed) return;
+      dataKatalogBuku.splice(index, 1);
+      loadBooks();
+      showAlert("Buku berhasil dihapus!");
+    }
+  );
 }
 
 window.onclick = function (event) {
