@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>History Transaksi - Toko Buku Singong</title>
+    <link rel="stylesheet" href="css/history.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="navbar-brand" onclick="location.href='dashboard.html'">
+        📚 Toko Buku Singkong
+      </div>
+      <a href="dashboard.html" class="btn-back">← Kembali ke Dashboard</a>
+    </nav>
+
+    <div class="container">
+      <div class="header">
+        <h1>📊 History Transaksi</h1>
+        <div class="filter-section">
+          <select id="filterStatus" onchange="filterTransactions()">
+            <option value="all">Semua Status</option>
+            <option value="pending">Pending</option>
+            <option value="proses">Diproses</option>
+            <option value="dikirim">Dikirim</option>
+            <option value="selesai">Selesai</option>
+          </select>
+          <input
+            type="month"
+            id="filterMonth"
+            onchange="filterTransactions()"
+          />
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card card-blue">
+          <div class="stat-icon">📦</div>
+          <div class="stat-label">Total Transaksi</div>
+          <div class="stat-value" id="totalTransaksi">0</div>
+        </div>
+
+        <div class="stat-card card-green">
+          <div class="stat-icon">💰</div>
+          <div class="stat-label">Total Pendapatan</div>
+          <div class="stat-value" id="totalPendapatan">Rp 0</div>
+        </div>
+
+        <div class="stat-card card-orange">
+          <div class="stat-icon">📚</div>
+          <div class="stat-label">Total Buku Terjual</div>
+          <div class="stat-value" id="totalBuku">0</div>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table id="transactionTable">
+          <thead>
+            <tr>
+              <th>No. Pesanan</th>
+              <th>Tanggal</th>
+              <th>Pelanggan</th>
+              <th>Items</th>
+              <th>Total</th>
+              <th>Status</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="transactionTableBody">
+            <!-- Data akan diisi oleh JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Modal Detail -->
+    <div id="detailModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="detail-header">
+          <h2>📋 Detail Transaksi</h2>
+        </div>
+        <div id="detailContent">
+          <!-- Detail akan diisi oleh JavaScript -->
+        </div>
+      </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/history.js"></script>
+  </body>
+</html>

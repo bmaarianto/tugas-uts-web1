@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tracking Pengiriman - Toko Buku Singkong</title>
+    <link rel="stylesheet" href="css/tracking.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="navbar-brand" onclick="location.href='dashboard.html'">
+        📚 Toko Buku Singkong
+      </div>
+      <a href="dashboard.html" class="btn-back">← Kembali ke Dashboard</a>
+    </nav>
+
+    <div class="container">
+      <div class="search-card">
+        <h1>🔍 Lacak Pengiriman</h1>
+        <p>
+          Masukkan nomor Delivery Order (DO) untuk melacak status pengiriman
+          Anda
+        </p>
+        <form class="search-form" onsubmit="searchTracking(event)">
+          <input
+            type="text"
+            class="search-input"
+            id="searchInput"
+            placeholder="Contoh: 20230012"
+            required
+          />
+          <button type="submit" class="btn-search">Cari</button>
+        </form>
+      </div>
+
+      <div class="no-result" id="noResult">
+        <div class="no-result-icon">📦</div>
+        <h3>Nomor DO tidak ditemukan</h3>
+        <p>Pastikan Anda memasukkan nomor DO yang benar</p>
+      </div>
+
+      <div class="result-card" id="resultCard">
+        <div class="result-header">
+          <h2>Detail Pengiriman</h2>
+          <span class="status-badge" id="statusBadge">Status</span>
+        </div>
+
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-label">Nomor DO</div>
+            <div class="info-value" id="nomorDO">-</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Nama Pemesan</div>
+            <div class="info-value" id="namaPemesan">-</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Ekspedisi</div>
+            <div class="info-value" id="ekspedisi">-</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Tanggal Kirim</div>
+            <div class="info-value" id="tanggalKirim">-</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Jenis Paket</div>
+            <div class="info-value" id="jenisPaket">-</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Total Pembayaran</div>
+            <div class="info-value" id="totalBayar">-</div>
+          </div>
+        </div>
+
+        <div class="progress-container">
+          <h3 style="color: #333; margin-bottom: 10px">Progress Pengiriman</h3>
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill">0%</div>
+          </div>
+        </div>
+
+        <div class="timeline">
+          <h3>Riwayat Perjalanan</h3>
+          <div id="timelineContainer">
+            <!-- Timeline items akan diisi oleh JavaScript -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/tracking.js"></script>
+  </body>
+</html>

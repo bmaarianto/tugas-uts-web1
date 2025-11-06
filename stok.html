@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Katalog Buku - Toko Buku Online UT</title>
+    <link rel="stylesheet" href="css/stok.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="navbar-brand" onclick="location.href='dashboard.html'">
+        📚 Toko Buku UT
+      </div>
+      <a href="dashboard.html" class="btn-back">← Kembali ke Dashboard</a>
+    </nav>
+
+    <div class="container">
+      <div class="header">
+        <h1>Katalog Buku</h1>
+        <button class="btn-add" onclick="openModal()">➕ Tambah Buku</button>
+      </div>
+
+      <div class="table-container">
+        <table id="bookTable">
+          <thead>
+            <tr>
+              <th>Cover</th>
+              <th>Kode Barang</th>
+              <th>Nama Buku</th>
+              <th>Jenis</th>
+              <th>Edisi</th>
+              <th>Stok</th>
+              <th>Harga</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="bookTableBody">
+            <!-- Data akan diisi oleh JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Modal Tambah/Edit Buku -->
+    <div id="bookModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2 id="modalTitle">Tambah Buku Baru</h2>
+        <form id="bookForm" onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <label for="kodeBarang">Kode Barang</label>
+            <input type="text" id="kodeBarang" required />
+          </div>
+          <div class="form-group">
+            <label for="namaBarang">Nama Buku</label>
+            <input type="text" id="namaBarang" required />
+          </div>
+          <div class="form-group">
+            <label for="jenisBarang">Jenis Barang</label>
+            <select id="jenisBarang" required>
+              <option value="Buku Ajar">Buku Ajar</option>
+              <option value="Buku Referensi">Buku Referensi</option>
+              <option value="Buku Panduan">Buku Panduan</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="edisi">Edisi</label>
+            <input type="text" id="edisi" required />
+          </div>
+          <div class="form-group">
+            <label for="stok">Stok</label>
+            <input type="number" id="stok" required />
+          </div>
+          <div class="form-group">
+            <label for="harga">Harga (tanpa Rp)</label>
+            <input type="number" id="harga" required />
+          </div>
+          <div class="form-group">
+            <label for="cover">URL Cover (opsional)</label>
+            <input type="text" id="cover" placeholder="img/nama_file.jpg" />
+          </div>
+          <button type="submit" class="btn-submit">Simpan</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/stok.js"></script>
+  </body>
+</html>
