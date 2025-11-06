@@ -1,12 +1,33 @@
 let currentEditIndex = -1;
 
+function checkUserAccess() {
+  const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+  if (!currentUser) {
+    alert("Silakan login terlebih dahulu!");
+    window.location.href = "login.html";
+    return false;
+  }
+  return currentUser;
+}
+
 window.onload = function () {
+  const currentUser = checkUserAccess();
+  if (!currentUser) return;
+
+  // Hide CRUD elements for non-admin users
+  if (currentUser.role !== "Admin") {
+    document.querySelector(".btn-add").style.display = "none";
+    document.querySelector("th:last-child").style.display = "none";
+  }
+
   loadBooks();
 };
 
 function loadBooks() {
   const tbody = document.getElementById("bookTableBody");
   tbody.innerHTML = "";
+  const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+  const isAdmin = currentUser && currentUser.role === "Admin";
 
   dataKatalogBuku.forEach((book, index) => {
     const row = tbody.insertRow();
@@ -15,17 +36,25 @@ function loadBooks() {
     const stockLabel = book.stok > 200 ? "Tersedia" : "Terbatas";
 
     row.innerHTML = `
-                    <td><img src="${book.cover}" alt="${book.namaBarang}" class="book-cover" onerror="this.src='https://via.placeholder.com/60x80?text=No+Image'"></td>
+                    <td><img src="${book.cover}" alt="${
+      book.namaBarang
+    }" class="book-cover" onerror="this.src='https://via.placeholder.com/60x80?text=No+Image'"></td>
                     <td>${book.kodeBarang}</td>
                     <td><strong>${book.namaBarang}</strong></td>
                     <td>${book.jenisBarang}</td>
                     <td>Edisi ${book.edisi}</td>
-                    <td><span class="badge ${stockStatus}">${book.stok} (${stockLabel})</span></td>
+                    <td><span class="badge ${stockStatus}">${
+      book.stok
+    } (${stockLabel})</span></td>
                     <td><strong>${book.harga}</strong></td>
-                    <td>
+                    ${
+                      isAdmin
+                        ? `<td>
                         <button class="btn-action btn-edit" onclick="editBook(${index})">✏️ Edit</button>
                         <button class="btn-action btn-delete" onclick="deleteBook(${index})">🗑️ Hapus</button>
-                    </td>
+                    </td>`
+                        : ""
+                    }
                 `;
   });
 }

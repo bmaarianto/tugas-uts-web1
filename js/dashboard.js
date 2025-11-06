@@ -1,78 +1,84 @@
-window.onload = function() {
-            const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-            
-            if (!currentUser) {
-                alert('Silakan login terlebih dahulu!');
-                window.location.href = 'login.html';
-                return;
-            }
+window.onload = function () {
+  const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
 
-            // Tampilkan nama user dan role
-            document.getElementById('userName').textContent = currentUser.nama;
-            
-            const roleBadge = document.getElementById('roleBadge');
-            roleBadge.textContent = currentUser.role;
-            
-            if (currentUser.role === 'Admin') {
-                roleBadge.className = 'role-badge badge-admin';
-                // Tampilkan menu admin
-                document.querySelectorAll('.admin-only').forEach(el => {
-                    el.style.display = 'block';
-                });
-                // Ubah deskripsi katalog untuk admin
-                document.getElementById('katalogDesc').textContent = 'Kelola stok buku (CRUD Operations)';
-            } else {
-                roleBadge.className = 'role-badge badge-user';
-                // Tampilkan menu user
-                document.querySelectorAll('.user-only').forEach(el => {
-                    el.style.display = 'block';
-                });
-                // Ubah deskripsi katalog untuk user
-                document.getElementById('katalogDesc').textContent = 'Lihat katalog buku yang tersedia';
-            }
+  if (!currentUser) {
+    alert("Silakan login terlebih dahulu!");
+    window.location.href = "login.html";
+    return;
+  }
 
-            // Set greeting berdasarkan waktu
-            setGreeting(currentUser.nama);
+  // Tampilkan nama user dan role
+  document.getElementById("userName").textContent = currentUser.nama;
 
-            // Tampilkan waktu saat ini
-            updateTime();
-        }
+  const roleBadge = document.getElementById("roleBadge");
+  roleBadge.textContent = currentUser.role;
 
-        function setGreeting(nama) {
-            const hour = new Date().getHours();
-            let greeting = '';
+  if (currentUser.role === "Admin") {
+    roleBadge.className = "role-badge badge-admin";
+    // Tampilkan menu admin
+    document.querySelectorAll(".admin-only").forEach((el) => {
+      el.style.display = "block";
+    });
+    document.getElementById("katalogDesc").textContent =
+      "Kelola stok buku (CRUD Operations)";
+  } else {
+    roleBadge.className = "role-badge badge-user";
+    // Tampilkan menu user
+    document.querySelectorAll(".user-only").forEach((el) => {
+      el.style.display = "block";
+    });
+    document.getElementById("katalogDesc").textContent =
+      "Lihat daftar buku yang tersedia";
+  }
+  // Tampilkan menu katalog untuk semua user
+  document.querySelector(".card-katalog").style.display = "block";
 
-            if (hour >= 5 && hour < 11) {
-                greeting = 'Selamat Pagi';
-            } else if (hour >= 11 && hour < 15) {
-                greeting = 'Selamat Siang';
-            } else if (hour >= 15 && hour < 18) {
-                greeting = 'Selamat Sore';
-            } else {
-                greeting = 'Selamat Malam';
-            }
+  // Set greeting berdasarkan waktu
+  setGreeting(currentUser.nama);
 
-            document.getElementById('greeting').textContent = greeting + ', ' + nama + '! 👋';
-        }
+  // Tampilkan waktu saat ini
+  updateTime();
+};
 
-        function updateTime() {
-            const now = new Date();
-            const options = { 
-                weekday: 'long', 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
-            };
-            document.getElementById('currentTime').textContent = now.toLocaleDateString('id-ID', options);
-        }
+function setGreeting(nama) {
+  const hour = new Date().getHours();
+  let greeting = "";
 
-        function logout() {
-            if (confirm('Apakah Anda yakin ingin logout?')) {
-                sessionStorage.removeItem('currentUser');
-                window.location.href = 'index.html';
-            }
-        }
+  if (hour >= 5 && hour < 11) {
+    greeting = "Selamat Pagi";
+  } else if (hour >= 11 && hour < 15) {
+    greeting = "Selamat Siang";
+  } else if (hour >= 15 && hour < 18) {
+    greeting = "Selamat Sore";
+  } else {
+    greeting = "Selamat Malam";
+  }
 
-        setInterval(updateTime, 60000);
+  document.getElementById("greeting").textContent =
+    greeting + ", " + nama + "! 👋";
+}
+
+function updateTime() {
+  const now = new Date();
+  const options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  };
+  document.getElementById("currentTime").textContent = now.toLocaleDateString(
+    "id-ID",
+    options
+  );
+}
+
+function logout() {
+  if (confirm("Apakah Anda yakin ingin logout?")) {
+    sessionStorage.removeItem("currentUser");
+    window.location.href = "index.html";
+  }
+}
+
+setInterval(updateTime, 60000);

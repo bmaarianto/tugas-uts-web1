@@ -101,7 +101,7 @@ body {
   cursor: pointer;
   text-decoration: none;
   color: inherit;
-  display: block;
+  display: none;
 }
 
 .menu-card:hover {
@@ -138,6 +138,7 @@ body {
 .card-tracking {
   background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
   color: white;
+  display: block;
 }
 
 .card-tracking h3,
@@ -158,6 +159,7 @@ body {
 .card-history {
   background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
   color: white;
+  display: block;
 }
 
 .card-history h3,
